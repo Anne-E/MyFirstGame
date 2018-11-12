@@ -6,7 +6,4 @@
 //  Copyright © 2018 Anne-Elisabeth. All rights reserved.
 //
 
-import Foundation
-
-print("Hello, World!")
-
+startGame ()
