@@ -7,63 +7,59 @@
 //
 
 import Foundation
+
 class Game {
-    var player1: Player = Player()
-    var player2: Player = Player()
+    var player1: Player!
+    var player2: Player!
     
     func startGame() {
         print("Welcome to my First Game!")
         
-        player1.choosePlayerName(playerNumber: 1)
-        player1.chooseTeam()
-        player2.choosePlayerName(playerNumber: 2)
-        player2.chooseTeam()
-        
+        let playerName: String = choosePlayerName(playerNumber: 1)
+        let playerTeam: [Character] = chooseTeam()
+        player1 = Player(name: playerName, team: playerTeam)
         
     }
-
-}
-
-class Player {
-    var name: String?
-    var team: [Character] = []
     
-    func choosePlayerName(playerNumber: Int){
+    func choosePlayerName(playerNumber: Int) -> String{
         print("Player \(playerNumber), what is your name?")
         if let playerName = readLine() {
             print("Welcome \(playerName)")
-            name = playerName
+            return playerName
         }
+        return ""
     }
     
-    func chooseTeam(){
-        var character1: Character = Character()
-        var character2: Character = Character()
-        var character3: Character = Character()
-        
-        if let name = name {
-            character1.chooseCharacterName(characterNumber: 1, playerName: name)
-            character2.chooseCharacterName(characterNumber: 2, playerName: name)
-            character3.chooseCharacterName(characterNumber: 3, playerName: name)
-        }
-        }
-}
-    
-
-class Character {
-    var name: String?
-    var lives: Int?
-    var weapon: Weapon?
-    
-    func chooseCharacterName(characterNumber: Int, playerName: String){
-        print("Player \(playerName), what is the name of your character \(characterNumber)?")
+    func chooseCharacterName(characterNumber: Int) -> String{
+        print("Player, what is the name of your character \(characterNumber)?")
         if let characterName = readLine() {
-            name = characterName
+           return characterName
         }
+        return ""
     }
+    
+    func chooseTeam() -> [Character]{
+        var team: [Character] = []
+        
+        var characterName: String!
+        var character: Character!
+        
+        let weapon: Weapon = Weapon(name: "sword", damage: 10)
+    
+        var characterNumber = 1
+        while (characterNumber != 4) {
+            characterName = chooseCharacterName(characterNumber: characterNumber)
+            character = Character(name: characterName, lives: 100, weapon: weapon)
+            team.append(character)
+            characterNumber = characterNumber + 1
+        }
+        
+        
+        
+       
+        return team
+    }
+
 }
 
-class Weapon {
-    var name: String?
-    var damage: Int?
-}
+
