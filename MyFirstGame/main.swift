@@ -6,4 +6,5 @@
 //  Copyright © 2018 Anne-Elisabeth. All rights reserved.
 //
 
-startGame ()
+var startGame = Game()
+startGame.startGame()
