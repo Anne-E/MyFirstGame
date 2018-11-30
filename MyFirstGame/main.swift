@@ -6,5 +6,7 @@
 //  Copyright © 2018 Anne-Elisabeth. All rights reserved.
 //
 
-var startGame = Game()
-startGame.startGame()
+// variable Game de type game = instance de classe Game
+var game: Game = Game()
+// appel de la méthode start.Game
+game.startGame()
