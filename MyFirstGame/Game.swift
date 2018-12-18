@@ -66,7 +66,7 @@ class Game {
     // methode chooseCharacterName qui prend comme paramètre charachterNumber de type Int et qui retourne un String
     func chooseCharacterName(characterNumber: Int, usedName: [String]) -> String{
         print("Player, what is the name of your character \(characterNumber)?")
-        //appel de la fonction readLine, si readLine renvoie une valeur qui n'est pas nil alors elle assigne à la constante characterName et on effectue les actions à l'intérieur des accolades
+        //appel de la fonction readLine, si readLine renvoie une valeur qui n'est pas nil alors elle est assignée à la constante characterName et on effectue les actions à l'intérieur des accolades
         let characterName = chooseName()
         for name in usedName {
             if name == characterName {
@@ -82,7 +82,7 @@ class Game {
     // methode chooseTeam qui ne prend pas de paramètres () renvoie un tableau de personnages
     func chooseTeam(playerNumber: Int) -> [Character]{
         
-        // création de variable team de type tableau de character à qui on assigne la valeur "tableau vide"
+        // création de la variable team de type tableau de character à qui on assigne la valeur "tableau vide"
         var team: [Character] = []
         // variable characterName de type String pour l'instant sans valeur
         var characterName: String!
