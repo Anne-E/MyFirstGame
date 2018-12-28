@@ -1,5 +1,5 @@
 //
-//  Wizard.swift
+//  Fists.swift
 //  MyFirstGame
 //
 //  Created by Anne-Elisabeth on 12/12/2018.
@@ -8,8 +8,9 @@
 
 import Foundation
 
-class Wizard: Character {
-    init(characterName: String) {
-        super.init(name: characterName, lives: 150, weapon: Wand())
+class Fists: Weapon {
+    public init() {
+        super.init(name: "Fists", damage: 3)
+        
     }
 }

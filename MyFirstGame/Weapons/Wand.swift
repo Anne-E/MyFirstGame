@@ -1,5 +1,5 @@
 //
-//  Fists.swift
+//  Wand.swift
 //  MyFirstGame
 //
 //  Created by Anne-Elisabeth on 12/12/2018.
@@ -8,9 +8,8 @@
 
 import Foundation
 
-class Fists: Weapon {
-    init() {
-        super.init(name: "Fists", damage: 3)
-        
+class Wand: Weapon {
+    public init() {
+        super.init(name: "Wand", damage: -25)
     }
 }

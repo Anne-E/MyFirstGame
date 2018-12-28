@@ -1,5 +1,5 @@
 //
-//  Wand.swift
+//  Giant.swift
 //  MyFirstGame
 //
 //  Created by Anne-Elisabeth on 12/12/2018.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-class Wand: Weapon {
-    init() {
-        super.init(name: "Wand", damage: -25)
+class Giant: Character {
+    public init(characterName: String){
+        super.init(name: characterName, lives: 200, weapon: Fists())
     }
 }

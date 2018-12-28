@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Dwarf.swift
 //  MyFirstGame
 //
 //  Created by Anne-Elisabeth on 12/12/2018.
@@ -8,11 +8,8 @@
 
 import Foundation
 
-class Warrior: Character {
-    init(characterName: String) {
-        super.init(name: characterName , lives: 100, weapon: Sword())
+class Dwarf: Character{
+    public init(characterName: String){
+        super.init(name: characterName, lives: 50, weapon: Axe())
     }
 }
-
-
-

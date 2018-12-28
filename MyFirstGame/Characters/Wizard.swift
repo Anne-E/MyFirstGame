@@ -1,5 +1,5 @@
 //
-//  Ax.swift
+//  Wizard.swift
 //  MyFirstGame
 //
 //  Created by Anne-Elisabeth on 12/12/2018.
@@ -8,10 +8,8 @@
 
 import Foundation
 
-
-class Axe: Weapon {
-    init(){
-        super.init(name: "Axe"," damage: 50)
+class Wizard: Character {
+    public init(characterName: String) {
+        super.init(name: characterName, lives: 150, weapon: Wand())
     }
-    
 }

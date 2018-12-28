@@ -9,10 +9,20 @@
 import Foundation
 
 class Player {
-    var name: String?
-    var team: [Character] = []
+    public var name: String
+    public var team: [Character] = []
+    public var isDead: Bool {
+        get {
+            for character in team {
+                if !character.isDead {
+                    return false
+                }
+            }
+            return true
+        }
+    }
     
-    init(name: String, team:[Character] ) {
+    public init(name: String, team:[Character] ) {
         self.name = name
         self.team = team
     }
