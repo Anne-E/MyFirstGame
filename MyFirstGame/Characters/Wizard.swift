@@ -10,6 +10,8 @@ import Foundation
 
 class Wizard: Character {
     public init(characterName: String) {
-        super.init(name: characterName, lives: 150, weapon: Wand())
+        let livesMax = 150
+        super.init(name: characterName, lives: livesMax, weapon: Wand())
+        self.livesMax = livesMax
     }
 }

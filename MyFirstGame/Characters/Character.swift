@@ -10,17 +10,25 @@ import Foundation
 
 class Character {
     public var name: String
-    private var lives: Int {
+    public var livesMax: Int = 100
+    
+    public var lives: Int {
         didSet {
-            if lives <= 0{
-                isDead = true
-            } else if lives > 200 {
-                lives = 200
+             if lives > livesMax {
+                lives = livesMax
             }
         }
     }
+    
     public var weapon: Weapon
-    public var isDead: Bool = false
+    public var isDead: Bool {
+        get {
+            if lives <= 0 {
+                return true
+            }
+            return false
+        }
+    }
     
     public init(name: String, lives: Int, weapon: Weapon) {
         self.name = name

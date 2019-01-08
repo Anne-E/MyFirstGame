@@ -9,8 +9,11 @@
 import Foundation
 
 class Warrior: Character {
+    
     public init(characterName: String) {
-        super.init(name: characterName , lives: 100, weapon: Sword())
+        let livesMax = 100
+        super.init(name: characterName , lives: livesMax, weapon: Sword())
+        self.livesMax = livesMax
     }
 }
 

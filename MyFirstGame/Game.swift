@@ -13,7 +13,8 @@ class Game {
     // propriété de la classe game : variable player1 + 2 de type Player (! = sans valeur  pour le moment) + Variable nameManager de type NameManager (classe crée)
     private var player1: Player!
     private var player2: Player!
-    private var nameManager: NameManager = NameManager()
+    private var nameManager = NameManager()
+    private var player1Turn = Bool.random()
     
     // Methode startGame qui comprend fonction setupGame + runGame
     public func startGame() {
@@ -29,7 +30,7 @@ class Game {
         // création d'une instance de Player que l'on assigne à la propriété player1
         player1 = setupPlayer(playerNumber: 1)
         
-        // création d'une instance de Player que l'on assigne à la propriété player1
+        // création d'une instance de Player que l'on assigne à la propriété player2
         player2 = setupPlayer(playerNumber: 2)
     }
     
@@ -45,31 +46,48 @@ class Game {
     
     // fonction runGame
     private func runGame() {
-        //utilisation de la fonction random pour décider de manière aléatoire qui commence
-        var player1Turn = Bool.random()
         // variable playingPlayer de type Player
         var playingPlayer: Player!
-        // boucle while tant qu'aucun des 2 joeurzs n'est mort le jeu continue (en cours de développement)
+        // boucle while tant qu'aucun des 2 joueurs n'est mort le jeu continue (en cours de développement)
         while !player1.isDead && !player2.isDead {
-            if player1Turn {
-                playingPlayer = player1
-            } else {
-                playingPlayer = player2
-            }
+            playingPlayer = actifPlayer()
+            printGame()
             print("\(playingPlayer.name) it's your turn")
-            // inversion du Bool player1Turn pour alterner le tour de jeu du joueur
-            player1Turn = !player1Turn
+            print("Which character do you want to use?")
+            var characterName = getLine() 
+
+        }
+    }
+    
+    private func printGame() {
+        print("---------- \(player1.name) ---------- ")
+        for character in player1.team {
+            print("-\(character.name)\t\(character.lives)\t\(character.weapon.damage)")
+        }
+        print("---------- \(player2.name) ---------- ")
+        for character in player2.team {
+            print("-\(character.name)\t\(character.lives)\t\(character.weapon.damage)")
+        }
+
+    }
+    
+    private func actifPlayer() -> Player {
+        player1Turn = !player1Turn
+        if player1Turn {
+            return player1
+        } else {
+            return player2
         }
     }
     
     
-    private func choose() -> String {
+    private func getLine() -> String {
         if let choice = readLine() {
             return choice
             
         } else {
                 print("wrong choice, start again")
-                return choose()
+                return getLine()
         }
     }
     
@@ -78,9 +96,9 @@ class Game {
     private func choosePlayerName(playerNumber: Int) -> String{
         print("Player \(playerNumber), what is your name?")
         //appel de la fonction readLine, si readLine renvoie une valeur qui n'est pas nil alors elle assigne à la variable playerName et on effectue les actions à l'intérieur des accolades
-        let playerName = choose()
+        let playerName = getLine()
         // si le joueur 1 a déjà choisi le nom renvoyé par la focntion chooseName du player 2 alors on redemande un nom différent au player 2
-        if playerNumber == 2 && player1.name == playerName {
+        if !nameManager.isValid(name: playerName) {
                 print("Your name was already taken by Player 1. Please choose another one")
                 return choosePlayerName(playerNumber:playerNumber)
         }
@@ -95,7 +113,7 @@ class Game {
     private func chooseCharacterName(characterNumber: Int) -> String{
         print("Player, what is the name of your character \(characterNumber)?")
         //appel de la fonction readLine, si readLine renvoie une valeur qui n'est pas nil alors elle est assignée à la constante characterName et on effectue les actions à l'intérieur des accolades
-        let characterName = choose()
+        let characterName = getLine()
         if !nameManager.isValid(name: characterName) {
             print("Your character name was already taken. Please choose another one")
             return chooseCharacterName(characterNumber: characterNumber)
@@ -105,7 +123,7 @@ class Game {
     
     private func createCharacter(characterName: String) -> Character {
         print("Choose the character's type for \(characterName). \n You can choose between those different types : warrior, wizard, dwarf and giant.")
-        let characterType = choose()
+        let characterType = getLine()
         if characterType == "warrior" {
             return Warrior(characterName: characterName)
         } else if characterType == "wizard" {
