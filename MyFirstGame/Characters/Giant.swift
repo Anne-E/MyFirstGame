@@ -9,6 +9,7 @@
 import Foundation
 
 class Giant: Character {
+    
     public init(characterName: String){
         let livesMax = 200
         super.init(name: characterName, lives: livesMax, weapon: Fists())

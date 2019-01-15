@@ -10,7 +10,6 @@ import Foundation
 
 class Fists: Weapon {
     public init() {
-        super.init(name: "Fists", damage: 3)
-        
+        super.init(name: "Fists", damage: 3)        
     }
 }

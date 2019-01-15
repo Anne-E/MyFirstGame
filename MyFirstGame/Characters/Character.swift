@@ -9,8 +9,9 @@
 import Foundation
 
 class Character {
+    
     public var name: String
-    public var livesMax: Int = 100
+    public var livesMax: Int
     
     public var lives: Int {
         didSet {
@@ -34,6 +35,7 @@ class Character {
         self.name = name
         self.lives = lives
         self.weapon = weapon
+        self.livesMax = 100
     }
    
     // création fonction attack qui prend comme paramètre victime de type Character 

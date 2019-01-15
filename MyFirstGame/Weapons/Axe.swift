@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 class Axe: Weapon {
     public init(){
         super.init(name: "Axe", damage: 50)

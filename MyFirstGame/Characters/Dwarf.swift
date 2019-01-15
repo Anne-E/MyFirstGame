@@ -9,6 +9,7 @@
 import Foundation
 
 class Dwarf: Character{
+    
     public init(characterName: String){
         let livesMax = 50
         super.init(name: characterName, lives: livesMax, weapon: Axe())
