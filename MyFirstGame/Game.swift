@@ -8,15 +8,15 @@
 
 import Foundation
 
-// creation de la classe Game
+// class Game declaration
 class Game {
-    // propriété de la classe game : variable player1 + 2 de type Player (! = sans valeur  pour le moment) + Variable nameManager de type NameManager (classe crée)
+    // properties assigned
     private var player1: Player!
     private var player2: Player!
     private var nameManager = NameManager()
     private var player1Turn = Bool.random()
     
-    // Methode startGame qui comprend fonction setupGame + runGame
+    // startGame method that includes setUpGame func + runGame func
     public func startGame() {
         print("Welcome to my First Game!")
         setupGame()
@@ -24,41 +24,41 @@ class Game {
         runGame()
     }
     
-    // fonction qui met en place les 2 joueurs
+    // setupGame func (to set up the 2 players)
     private func setupGame() {
         
-        // création d'une instance de Player que l'on assigne à la propriété player1
+        // instance of Player assigned to player1 property
         player1 = setupPlayer(playerNumber: 1)
         
-        // création d'une instance de Player que l'on assigne à la propriété player2
+        // instance of Player assigned to player2 property
         player2 = setupPlayer(playerNumber: 2)
     }
     
-    // fonction setupPlayer : choix du nom du joueur + de l'équipe
+    // setupPlayerFunc : to choose the playerName + the playerTeam
     private func setupPlayer(playerNumber: Int) -> Player {
-        // variable playerName de type String à laquelle on assigne la valeur de retour de la méthode choosePlayerName
+        // playerName variable (String) that returns choosePlayerName
         let playerName: String = choosePlayerName(playerNumber: playerNumber)
-        // variable playerTeam de type tableau de Character à laquelle on assigne la valeur de retour de la méthode chooseTeam
+        // playerTeam variable (characters arry) that returns chooseTeam method
         let playerTeam: [Character] = chooseTeam(playerName: playerName)
         
         return Player(name: playerName, team: playerTeam)
     }
     
-    // fonction runGame
+    // runGame Function
     private func runGame() {
-        // variable playingPlayer de type Player
+        // variable playingPlayer
         var playingPlayer: Player!
-        // boucle while tant qu'aucun des 2 joueurs n'est mort le jeu continue
+        // while loop : the game goes on as long as none of the players die
         while !player1.isDead && !player2.isDead {
-            // On appel la fonction actifPlayer qui va renvoyer le playingPlayer
+            // actifPlayer Func called that returns playingPlayer
             playingPlayer = actifPlayer()
-            // on appel la fonction printGame qui affiche l'etat courant du jeu
+            // printGame func called to dsiplay the current state of the game
             printGame()
             print("\(playingPlayer.name) it's your turn")
-            // on appel la fonction PlayerAction qui va effectuer l'action souhaité par le joueur
+            // playerAction func called to perform the action decided by the player
             playerAction(player: playingPlayer)
         }
-        // si le player 1 est mort on félicite le player 2 sinon c'est le contraire
+        // if player1 is dead congratulation to player2 else congratulation to player1
         if player1.isDead {
             print("Congratulation \(player2.name) you win !!")
         } else {
@@ -66,18 +66,18 @@ class Game {
         }
     }
     
-    // Fonction PlayerAction
+    // PlayerAction Function
     private func playerAction(player: Player){
-        // On demande au joueur de choisir un personnage en appelant chooseCaracterUser
+        // the player chooses a character (chooseCharacterUse called)
         print("Which character do you want to use?")
         let attacker = chooseCharacterUse(player: player)
         
-        // On appel searchTreasure pour voir si le personnage a trouvé un trésor
+        // searchTreasure called to determine if the character found a treasure
         searchTreasure(character: attacker)
         
         let playerVictim: Player!
         
-        //On récupére le joueur qui n'est pas en train de jouer
+        //the non playing player is the victim
         if self.player1.name == player.name {
             playerVictim = self.player2
         } else {
@@ -86,23 +86,24 @@ class Game {
         
         let victim: Character!
         
-        // On regarde si le personnage choisie n'est pas un soigneur
+        // if the character is not the healer (wizard)
         if attacker.weapon.damage > 0 {
-            // On demande au joueur de choisir un personnage dans l'équipe adverse
+            // the player chooses a character to attack in the opposing team
             print("which character do you want to attack?")
             victim = chooseCharacterUse(player: playerVictim)
         } else {
-            // On demande au joueur de choisir un personnage de son équipe
-            print("which character do you want to heal")
+            // if the character choosed is the healer, the player chooses a character in his/her own team to heal
+            print("which character do you want to heal?")
             victim = chooseCharacterUse(player: player)
         }
         
-        // on lance l'action d'attaque ou de soin avec les personnages choisies
+        // attacking or healing action called
         attacker.attack(victim: victim)
     }
     
+    // searchTreasure func
     private func searchTreasure(character: Character) {
-        // Tableau d'arme de type attaque qu'un personnage peux trouver
+        // array of weapons meant for attacking that the character might find
         let weaponsDamageTreasure: [Weapon] = [
             Weapon(name: "fork", damage: 2),
             Weapon(name: "knife", damage: 25),
@@ -111,7 +112,7 @@ class Game {
             Weapon(name: "gold sword", damage: 100)
         ]
         
-        // Tableau d'arme de type soins qu'un personnage peux trouver
+        // array of "weapons" meant for healing that the character might find
         let weaponsHealTreasure: [Weapon] = [
             Weapon(name: "broken wand", damage: -2),
             Weapon(name: "potion", damage: -40),
@@ -119,38 +120,38 @@ class Game {
             Weapon(name: "gold wand", damage: -100)
         ]
         
-        // on récupére un chiffre entre 0 et 100
+        // random number called between 0 and 100
         let number = Int.random(in: 0 ..< 100)
         
-        // si ce chiffre est plus grand que 30 le personnage ne trouve pas de trésor donc return
+        // if this number is greater than 30, the character doesn't get a treasure so return
         if number > 30 {
             return
         }
-        // sinon cela veux dire qu'il a trouvé un trésor
+        // if not he gets a treasure
         print("\(character.name) found a treasure")
         
         let treasure: Weapon!
-        // si le personnage est de type ataque on choisie un arme de type attaque au hasard dans le tableau d'arme de type attaque
+        // if the character choosed is an attackant, choose randomly a weapon in the corresponding array
         if character.weapon.damage > 0 {
             treasure = weaponsDamageTreasure.randomElement()
         } else {
-            // sinon le personnage est de type soins on choisie un arme de type soins au hasard dans le tableau d'arme de type soins
+            // if the character is a healer, choose randomly a healing element in the corresponding array
             treasure = weaponsHealTreasure.randomElement()
         }
-        print("treasure contains \(treasure.name) demage : \(treasure.damage)")
+        print("treasure contains \(treasure.name) damage : \(treasure.damage)")
         print("\(character.name) changes his weapon for \(treasure.name)")
-        // on assigne l'arme venant du tresor au personnage
+        // the new treasure weapon is assigned to the character
         character.weapon = treasure
     }
     
-    // function chooseCgaracterUse
+    // chooseCharacterUse function
     private func chooseCharacterUse(player: Player) -> Character {
-        // on demande au joueur de tappé le nom du personnage qu'il veux utilisé
+        // the player needs to type the name of the chosen character
         let characterName = getLine()
-        // on recherche si le nom tappé se trouve dans l'équipe
+        // if the name is in the team array
         for character in player.team {
             if characterName == character.name {
-                // si c'est le cas on renvois le personnage
+                // return the character
                 if character.isDead {
                     print("The character choosed is dead. Please choose another one.")
                     return chooseCharacterUse(player:player)
@@ -158,14 +159,14 @@ class Game {
                 return character
             }
         }
-        // sinon on lui demande de recommencer
+        // if not try again
         print("Character not found. Please try again.")
         return chooseCharacterUse(player:player)
     }
     
-    // function printGame
+    // printGame function
     private func printGame() {
-        // cette fonction affiche les informations des deux joueurs et de leurs équipes.
+        // function to display infos of both players/teams
         let players: [Player] = [player1, player2]
         for player in players {
             print("------------ \(player.name) ------------")
@@ -179,9 +180,9 @@ class Game {
         }
     }
     
-    // function actifPlayer
+    // actifPlayer function
     private func actifPlayer() -> Player {
-        // cette fonction renvoie le player actif
+        // return the actifPlayer
         player1Turn = !player1Turn
         if player1Turn {
             return player1
@@ -190,26 +191,26 @@ class Game {
         }
     }
     
-    // function getLine
+    // getLine function
     private func getLine() -> String {
-        // cette fonction appel readLine pour récupérer une entrée clavier utilisateur
+        //  calls readLine to get a user keyboard input
         if let choice = readLine() {
-            // si cette entrée n'est pas vide on la renvoie
+            // if it is not nil then return
             return choice
         } else {
-            // sinon on lui demande de recommencer
+            // else try again
             print("wrong choice, start again")
             return getLine()
         }
     }
     
     
-    // methode choosePlayerName qui prend comme paramètre playerNumber de type Int et qui retourne un String
+    // chooseplayerName function
     private func choosePlayerName(playerNumber: Int) -> String{
         print("Player \(playerNumber), what is your name?")
-        //appel de la fonction readLine, si readLine renvoie une valeur qui n'est pas nil alors elle assigne à la variable playerName et on effectue les actions à l'intérieur des accolades
+        //readLine func called. If readLine returns a value (not nil) then assigned to playerName variable and the actions between the brackets are performed
         let playerName = getLine()
-        // si le joueur 1 a déjà choisi le nom renvoyé par la focntion chooseName du player 2 alors on redemande un nom différent au player 2
+        // if the player chose a name already used by the player1 : return choosePlayerName
         if !nameManager.isValid(name: playerName) {
             print("Your name was already taken by Player 1. Please choose another one")
             return choosePlayerName(playerNumber:playerNumber)
@@ -221,10 +222,10 @@ class Game {
     
     
     
-    // methode chooseCharacterName qui prend comme paramètre charachterNumber de type Int et qui retourne un String
+    // chooseCharacterName function
     private func chooseCharacterName(characterNumber: Int, playerName: String) -> String{
         print("\(playerName), what is the name of your character \(characterNumber)?")
-        //appel de la fonction readLine, si readLine renvoie une valeur qui n'est pas nil alors elle est assignée à la constante characterName et on effectue les actions à l'intérieur des accolades
+        //readLine func called. If readLine returns a value (not nil) then assigned to playerName variable and the actions between the brackets are performed
         let characterName = getLine()
         if !nameManager.isValid(name: characterName) {
             print("Your character name was already taken. Please choose another one")
@@ -233,13 +234,12 @@ class Game {
         return characterName
     }
     
-    // methode createCharacter
-    // cette fonction prend en paramétre un nom de personnage
+    // createCharacter func (paramater = characterName)
     private func createCharacter(characterName: String) -> Character {
         print("Choose the character's type for \(characterName). \n You can choose between those different types : warrior, wizard, dwarf and giant.")
-        // on demande au Joueur qu'elle type de personnage il veux pour ce personnage
+        // Player has to choose which type of character he/she wants to use for the characterName
         let characterType = getLine()
-        // On créer le personnage correspondant au type choisie
+        // character created (corresponds to the chosen type)
         if characterType == "warrior" {
             return Warrior(characterName: characterName)
         } else if characterType == "wizard" {
@@ -249,34 +249,28 @@ class Game {
         } else if characterType == "giant" {
             return Giant(characterName: characterName)
         } else {
-            // si le type choisie n'est pas un type existant on lui demande de recommencer
+            // if the type chosen returned doesn't exist return createCharacter
             print("The type entered is not valid one. Please try again.")
             return createCharacter(characterName:characterName)
         }
     }
     
-    // methode chooseTeam qui ne prend pas de paramètres () renvoie un tableau de personnages
+    // chooseTeam function returns array of characters
     private func chooseTeam(playerName: String) -> [Character]{
         
-        // création de la variable team de type tableau de character à qui on assigne la valeur "tableau vide"
         var team: [Character] = []
-        // variable characterName de type String pour l'instant sans valeur
         var characterName: String!
-        // variable character de type Character pour l'instant sans valeur
         var character: Character!
         
         var number = 1
+        //While Loop to limit the number of character chosen to 4 + added the team array
         while (number != 4) {
-            // on assigne à la variable characterName la valeur de retour de la méthode chooseCharacterName qui prend en paramètre characterNumber
             characterName = chooseCharacterName(characterNumber: number, playerName: playerName)
-            // on assigne à la variable character une instance de classe character à laquelle on assigne les propriétés name, lives et weapon
             character = createCharacter(characterName: characterName)
-            // ajout dans le tableau team du "character" créé au-dessus
             team.append(character)
-            // on assigne à la variable number la valeur number +1
             number = number + 1
         }
-        // retourne la valeur contenue dans la variable équipe de type tableau de personnages.
+    
         return team
     }
     

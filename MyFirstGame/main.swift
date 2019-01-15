@@ -6,9 +6,9 @@
 //  Copyright © 2018 Anne-Elisabeth. All rights reserved.
 //
 
-// variable Game de type game = instance de classe Game
+// variable Game  = instance fo class Game
 var game: Game = Game()
-// appel de la méthode start.Game
+// call of startGame method
 game.startGame()
 
 
