@@ -21,6 +21,8 @@
 		9ADEC80821A71E2200F6D0EF /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEC80721A71E2200F6D0EF /* Player.swift */; };
 		9ADEC80A21A71E7500F6D0EF /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEC80921A71E7500F6D0EF /* Character.swift */; };
 		9ADEC80C21A71EA700F6D0EF /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEC80B21A71EA700F6D0EF /* Weapon.swift */; };
+		9AE22B6621F6352E00D18ADF /* TreasureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE22B6521F6352E00D18ADF /* TreasureManager.swift */; };
+		9AE22B6821F636BC00D18ADF /* StatisticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE22B6721F636BC00D18ADF /* StatisticsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +53,8 @@
 		9ADEC80721A71E2200F6D0EF /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		9ADEC80921A71E7500F6D0EF /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		9ADEC80B21A71EA700F6D0EF /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
+		9AE22B6521F6352E00D18ADF /* TreasureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureManager.swift; sourceTree = "<group>"; };
+		9AE22B6721F636BC00D18ADF /* StatisticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StatisticsManager.swift; path = MyFirstGame/StatisticsManager.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +89,9 @@
 			children = (
 				9A7D3DDF219213E200924C36 /* main.swift */,
 				9A7D3DE62192156100924C36 /* Game.swift */,
+				9AE22B6521F6352E00D18ADF /* TreasureManager.swift */,
 				9A1FFA6F21C9586C00822E5F /* NameManager.swift */,
+				9AE22B6721F636BC00D18ADF /* StatisticsManager.swift */,
 				9ADEC80721A71E2200F6D0EF /* Player.swift */,
 				9A8BD19821D6900E00FA07B9 /* Characters */,
 				9A8BD19721D68FFB00FA07B9 /* Weapons */,
@@ -182,9 +188,11 @@
 				9ADEC80C21A71EA700F6D0EF /* Weapon.swift in Sources */,
 				9A693F0A21C177FD001358C0 /* Warrior.swift in Sources */,
 				9A7D3DE0219213E200924C36 /* main.swift in Sources */,
+				9AE22B6821F636BC00D18ADF /* StatisticsManager.swift in Sources */,
 				9A1FFA7021C9586C00822E5F /* NameManager.swift in Sources */,
 				9A693F1421C17F07001358C0 /* Fists.swift in Sources */,
 				9ADEC80821A71E2200F6D0EF /* Player.swift in Sources */,
+				9AE22B6621F6352E00D18ADF /* TreasureManager.swift in Sources */,
 				9A7D3DE72192156100924C36 /* Game.swift in Sources */,
 				9ADEC80A21A71E7500F6D0EF /* Character.swift in Sources */,
 				9A693F1221C17E40001358C0 /* Giant.swift in Sources */,

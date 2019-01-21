@@ -14,6 +14,8 @@ class Game {
     private var player1: Player!
     private var player2: Player!
     private var nameManager = NameManager()
+    private var treasureManager = TreasureManager()
+    private var statisticsManager = StatisticsManager()
     private var player1Turn = Bool.random()
     
     // startGame method that includes setUpGame func + runGame func
@@ -50,9 +52,9 @@ class Game {
         var playingPlayer: Player!
         // while loop : the game goes on as long as none of the players die
         while !player1.isDead && !player2.isDead {
-            // actifPlayer Func called that returns playingPlayer
+            // actifPlayer func called that returns playingPlayer
             playingPlayer = actifPlayer()
-            // printGame func called to dsiplay the current state of the game
+            // printGame func called to display the current state of the game
             printGame()
             print("\(playingPlayer.name) it's your turn")
             // playerAction func called to perform the action decided by the player
@@ -63,7 +65,8 @@ class Game {
             print("Congratulation \(player2.name) you win !!")
         } else {
             print("Congratulation \(player1.name) you win !!")
-        }
+        }        
+        statisticsManager.printStatistics()
     }
     
     // PlayerAction Function
@@ -73,7 +76,7 @@ class Game {
         let attacker = chooseCharacterUse(player: player)
         
         // searchTreasure called to determine if the character found a treasure
-        searchTreasure(character: attacker)
+        treasureManager.searchTreasure(character: attacker)
         
         let playerVictim: Player!
         
@@ -92,56 +95,17 @@ class Game {
             print("which character do you want to attack?")
             victim = chooseCharacterUse(player: playerVictim)
         } else {
-            // if the character choosed is the healer, the player chooses a character in his/her own team to heal
+            // if the chosen character is the healer, the player chooses a character in his/her own team to heal
             print("which character do you want to heal?")
             victim = chooseCharacterUse(player: player)
         }
         
+        // statisticsManager.updateStatistics called
+        statisticsManager.updateStatistics(attackerPlayer: player, attacker: attacker,
+                                           defenderPlayer: playerVictim, defender: victim)
+        
         // attacking or healing action called
         attacker.attack(victim: victim)
-    }
-    
-    // searchTreasure func
-    private func searchTreasure(character: Character) {
-        // array of weapons meant for attacking that the character might find
-        let weaponsDamageTreasure: [Weapon] = [
-            Weapon(name: "fork", damage: 2),
-            Weapon(name: "knife", damage: 25),
-            Weapon(name: "mass", damage: 40),
-            Weapon(name: "bow", damage: 50),
-            Weapon(name: "gold sword", damage: 100)
-        ]
-        
-        // array of "weapons" meant for healing that the character might find
-        let weaponsHealTreasure: [Weapon] = [
-            Weapon(name: "broken wand", damage: -2),
-            Weapon(name: "potion", damage: -40),
-            Weapon(name: "sivler wand", damage: -50),
-            Weapon(name: "gold wand", damage: -100)
-        ]
-        
-        // random number called between 0 and 100
-        let number = Int.random(in: 0 ..< 100)
-        
-        // if this number is greater than 30, the character doesn't get a treasure so return
-        if number > 30 {
-            return
-        }
-        // if not he gets a treasure
-        print("\(character.name) found a treasure")
-        
-        let treasure: Weapon!
-        // if the character choosed is an attackant, choose randomly a weapon in the corresponding array
-        if character.weapon.damage > 0 {
-            treasure = weaponsDamageTreasure.randomElement()
-        } else {
-            // if the character is a healer, choose randomly a healing element in the corresponding array
-            treasure = weaponsHealTreasure.randomElement()
-        }
-        print("treasure contains \(treasure.name) damage : \(treasure.damage)")
-        print("\(character.name) changes his weapon for \(treasure.name)")
-        // the new treasure weapon is assigned to the character
-        character.weapon = treasure
     }
     
     // chooseCharacterUse function

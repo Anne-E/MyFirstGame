@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Character {
+class Character: Hashable {
     
     public var name: String
     public var livesMax: Int
@@ -41,6 +41,14 @@ class Character {
     // création fonction attack qui prend comme paramètre victime de type Character 
     public func attack(victim: Character){
         victim.lives -= self.weapon.damage
+    }
+    
+    static func == (lhs: Character, rhs: Character) -> Bool {
+        return lhs.name == rhs.name
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.name)
     }
 }
 

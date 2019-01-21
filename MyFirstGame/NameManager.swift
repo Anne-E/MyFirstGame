@@ -11,7 +11,7 @@ import Foundation
 class NameManager {
   private var names = [String]()
     
-    // function isValide vérifie si le nom entré a déjà était utilisé
+    // isValid func that verifies if the name chosen has already been used
     public func isValid(name: String) -> Bool {
         if !name.isEmpty && !names.contains(name) {
             names.append(name)

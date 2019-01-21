@@ -8,7 +8,8 @@
 
 import Foundation
 
-class Player {
+// class Player 
+class Player : Hashable {
     public var name: String
     public var team: [Character] = []
     public var isDead: Bool {
@@ -25,5 +26,13 @@ class Player {
     public init(name: String, team:[Character] ) {
         self.name = name
         self.team = team
+    }
+    
+    static func == (lhs: Player, rhs: Player) -> Bool {
+        return lhs.name == rhs.name
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.name)
     }
 }
