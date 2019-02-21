@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Dwarf: Character{
+class Dwarf: Character {
     
     public init(characterName: String){
         let livesMax = 50
