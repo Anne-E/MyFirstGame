@@ -11,7 +11,7 @@ import Foundation
 // class Player 
 class Player : Hashable {
     public var name: String
-    public var team: [Character] = []
+    public var team: [Character]
     public var isDead: Bool {
         get {
             for character in team {
@@ -35,4 +35,5 @@ class Player : Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.name)
     }
+
 }

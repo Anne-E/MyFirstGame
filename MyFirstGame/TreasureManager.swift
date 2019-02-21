@@ -16,15 +16,15 @@ class TreasureManager {
         Weapon(name: "knife", damage: 25),
         Weapon(name: "mass", damage: 40),
         Weapon(name: "bow", damage: 50),
-        Weapon(name: "gold sword", damage: 100)
+        Weapon(name: "golden sword", damage: 100)
     ]
     
     // array of "weapons" meant for healing that the character might find
     lazy private var weaponsHealTreasure: [Weapon] = [
         Weapon(name: "broken wand", damage: -2),
         Weapon(name: "potion", damage: -40),
-        Weapon(name: "sivler wand", damage: -50),
-        Weapon(name: "gold wand", damage: -100)
+        Weapon(name: "silver wand", damage: -50),
+        Weapon(name: "golden wand", damage: -100)
     ]
     
     // searchTreasure func

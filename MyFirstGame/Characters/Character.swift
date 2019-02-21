@@ -8,11 +8,12 @@
 
 import Foundation
 
-class Character: Hashable {
+class Character: Hashable { 
     
     public var name: String
     public var livesMax: Int
     
+    // called after lives change (reset if lives is greater than livesMax)
     public var lives: Int {
         didSet {
              if lives > livesMax {
@@ -22,6 +23,8 @@ class Character: Hashable {
     }
     
     public var weapon: Weapon
+    
+    // Bool to check if one of the characters is dead or not
     public var isDead: Bool {
         get {
             if lives <= 0 {
@@ -31,6 +34,7 @@ class Character: Hashable {
         }
     }
     
+    // to create a character (a constructor)
     public init(name: String, lives: Int, weapon: Weapon) {
         self.name = name
         self.lives = lives
@@ -38,15 +42,18 @@ class Character: Hashable {
         self.livesMax = 100
     }
    
-    // création fonction attack qui prend comme paramètre victime de type Character 
-    public func attack(victim: Character){
+    // attack function taking as a parameter the victim character and applying to the victim's life the weapon's damage of the current attacker
+    public func attackOrHeal(victim: Character){
         victim.lives -= self.weapon.damage
     }
     
+    
+    // implementation of the hashable protocol
     static func == (lhs: Character, rhs: Character) -> Bool {
         return lhs.name == rhs.name
     }
     
+    //
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.name)
     }

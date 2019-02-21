@@ -10,14 +10,12 @@ import Foundation
 
 class NameManager {
   private var names = [String]()
-    
     // isValid func that verifies if the name chosen has already been used
     public func isValid(name: String) -> Bool {
         if !name.isEmpty && !names.contains(name) {
             names.append(name)
             return true
-        }
-        else {
+        } else {
             return false
         }
     }

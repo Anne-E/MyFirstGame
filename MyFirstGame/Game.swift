@@ -26,7 +26,7 @@ class Game {
         runGame()
     }
     
-    // setupGame func (to set up the 2 players)
+    // setupGame Method (to set up the 2 players)
     private func setupGame() {
         
         // instance of Player assigned to player1 property
@@ -36,29 +36,31 @@ class Game {
         player2 = setupPlayer(playerNumber: 2)
     }
     
-    // setupPlayerFunc : to choose the playerName + the playerTeam
+    
+    // setupPlayer method : to choose the playerName + the playerTeam
     private func setupPlayer(playerNumber: Int) -> Player {
-        // playerName variable (String) that returns choosePlayerName
+        // playerName variable (String) that returns choosePlayerName method
         let playerName: String = choosePlayerName(playerNumber: playerNumber)
-        // playerTeam variable (characters arry) that returns chooseTeam method
+        // playerTeam variable (characters array) that returns chooseTeam method
         let playerTeam: [Character] = chooseTeam(playerName: playerName)
         
         return Player(name: playerName, team: playerTeam)
     }
     
-    // runGame Function
+    
+    // runGame Method
     private func runGame() {
         // variable playingPlayer
-        var playingPlayer: Player!
+        var currentPlayer: Player!
         // while loop : the game goes on as long as none of the players die
         while !player1.isDead && !player2.isDead {
             // actifPlayer func called that returns playingPlayer
-            playingPlayer = actifPlayer()
+            currentPlayer = actifPlayer()
             // printGame func called to display the current state of the game
             printGame()
-            print("\(playingPlayer.name) it's your turn")
+            print("\(currentPlayer.name) it's your turn")
             // playerAction func called to perform the action decided by the player
-            playerAction(player: playingPlayer)
+            playerAction(playingPlayer: currentPlayer)
         }
         // if player1 is dead congratulation to player2 else congratulation to player1
         if player1.isDead {
@@ -69,11 +71,12 @@ class Game {
         statisticsManager.printStatistics()
     }
     
-    // PlayerAction Function
-    private func playerAction(player: Player){
+    
+    // PlayerAction Method
+    private func playerAction(playingPlayer: Player){
         // the player chooses a character (chooseCharacterUse called)
         print("Which character do you want to use?")
-        let attacker = chooseCharacterUse(player: player)
+        let attacker = chooseCharacterUse(player: playingPlayer)
         
         // searchTreasure called to determine if the character found a treasure
         treasureManager.searchTreasure(character: attacker)
@@ -81,34 +84,35 @@ class Game {
         let playerVictim: Player!
         
         //the non playing player is the victim
-        if self.player1.name == player.name {
-            playerVictim = self.player2
+        if player1.name == playingPlayer.name {
+            playerVictim = player2
         } else {
-            playerVictim = self.player1
+            playerVictim = player1
         }
         
-        let victim: Character!
+        let victimChoosen: Character!
         
         // if the character is not the healer (wizard)
         if attacker.weapon.damage > 0 {
             // the player chooses a character to attack in the opposing team
             print("which character do you want to attack?")
-            victim = chooseCharacterUse(player: playerVictim)
+            victimChoosen = chooseCharacterUse(player: playerVictim)
         } else {
             // if the chosen character is the healer, the player chooses a character in his/her own team to heal
             print("which character do you want to heal?")
-            victim = chooseCharacterUse(player: player)
+            victimChoosen = chooseCharacterUse(player: playingPlayer)
         }
         
-        // statisticsManager.updateStatistics called
-        statisticsManager.updateStatistics(attackerPlayer: player, attacker: attacker,
-                                           defenderPlayer: playerVictim, defender: victim)
-        
         // attacking or healing action called
-        attacker.attack(victim: victim)
+        attacker.attackOrHeal(victim: victimChoosen)
+        
+        // statisticsManager.updateStatistics called
+        statisticsManager.updateStatistics(attackerPlayer: playingPlayer, attacker: attacker,
+                                           defenderPlayer: playerVictim, defender: victimChoosen)
     }
     
-    // chooseCharacterUse function
+    
+    // chooseCharacterUse Method
     private func chooseCharacterUse(player: Player) -> Character {
         // the player needs to type the name of the chosen character
         let characterName = getLine()
@@ -117,7 +121,7 @@ class Game {
             if characterName == character.name {
                 // return the character
                 if character.isDead {
-                    print("The character choosed is dead. Please choose another one.")
+                    print("The character chosen is dead. Please choose another one.")
                     return chooseCharacterUse(player:player)
                 }
                 return character
@@ -128,7 +132,8 @@ class Game {
         return chooseCharacterUse(player:player)
     }
     
-    // printGame function
+    
+    // printGame Method
     private func printGame() {
         // function to display infos of both players/teams
         let players: [Player] = [player1, player2]
@@ -144,10 +149,15 @@ class Game {
         }
     }
     
-    // actifPlayer function
+    
+    // actifPlayer Method
     private func actifPlayer() -> Player {
         // return the actifPlayer
+       
+        // inverse the value of the player1turn boolean
         player1Turn = !player1Turn
+        
+        
         if player1Turn {
             return player1
         } else {
@@ -155,7 +165,8 @@ class Game {
         }
     }
     
-    // getLine function
+    
+    // getLine Method
     private func getLine() -> String {
         //  calls readLine to get a user keyboard input
         if let choice = readLine() {
@@ -169,12 +180,12 @@ class Game {
     }
     
     
-    // chooseplayerName function
-    private func choosePlayerName(playerNumber: Int) -> String{
+    // chooseplayerName Method
+    private func choosePlayerName(playerNumber: Int) -> String {
         print("Player \(playerNumber), what is your name?")
-        //readLine func called. If readLine returns a value (not nil) then assigned to playerName variable and the actions between the brackets are performed
+        //getLine func called. If getLine returns a value (not nil) then assigned to playerName variable and the actions between the brackets are performed
         let playerName = getLine()
-        // if the player chose a name already used by the player1 : return choosePlayerName
+        // if the player choses a name already used by the player1 : return choosePlayerName
         if !nameManager.isValid(name: playerName) {
             print("Your name was already taken by Player 1. Please choose another one")
             return choosePlayerName(playerNumber:playerNumber)
@@ -185,9 +196,8 @@ class Game {
     }
     
     
-    
-    // chooseCharacterName function
-    private func chooseCharacterName(characterNumber: Int, playerName: String) -> String{
+    // chooseCharacterName Method
+    private func chooseCharacterName(characterNumber: Int, playerName: String) -> String {
         print("\(playerName), what is the name of your character \(characterNumber)?")
         //readLine func called. If readLine returns a value (not nil) then assigned to playerName variable and the actions between the brackets are performed
         let characterName = getLine()
@@ -198,7 +208,8 @@ class Game {
         return characterName
     }
     
-    // createCharacter func (paramater = characterName)
+    
+    // createCharacter Method (paramater = characterName)
     private func createCharacter(characterName: String) -> Character {
         print("Choose the character's type for \(characterName). \n You can choose between those different types : warrior, wizard, dwarf and giant.")
         // Player has to choose which type of character he/she wants to use for the characterName
@@ -219,8 +230,9 @@ class Game {
         }
     }
     
-    // chooseTeam function returns array of characters
-    private func chooseTeam(playerName: String) -> [Character]{
+    
+    // chooseTeam Method returns array of characters
+    private func chooseTeam(playerName: String) -> [Character] {
         
         var team: [Character] = []
         var characterName: String!
