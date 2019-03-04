@@ -23,7 +23,7 @@ class StatisticsManager {
     private var teamStatistics: [Player : Statistic] = [:]
     private var totalNumberOfTurn: Int = 0
     
-    // printStatistics func displays number of turns, character + players stats
+    // printStatistics func retrieves number of turns, character + players stats
     public func printStatistics() {
         print("Number of turn: \(totalNumberOfTurn)")
         for (character, statistic) in charactersStatistics {
@@ -43,8 +43,7 @@ class StatisticsManager {
     }
     
     // updateStatistics func
-    public func updateStatistics(attackerPlayer: Player, attacker: Character,
-                                 defenderPlayer: Player, defender: Character){
+    public func updateStatistics(attackerPlayer: Player, attacker: Character, defenderPlayer: Player, defender: Character){
         
         updateCharacterStatistics(attacker: attacker, defender: defender)
         updateTeamStatistics(attackerPlayer: attackerPlayer, attacker: attacker, defenderPlayer: defenderPlayer)
@@ -53,45 +52,45 @@ class StatisticsManager {
     
     // stats for characters
     private func updateCharacterStatistics(attacker: Character, defender: Character) {
-        // to check if a character's statistics already exist (if not create them)
         
-        let statisticAttacker = getStatisticFor(character: attacker)
+        
+        let statisticAttacker = getStatisticsFor(character: attacker)
             
         statisticAttacker.attacksNumber += 1
         statisticAttacker.damageGiven += attacker.weapon.damage
         
-        let statisticDefender = getStatisticFor(character: defender)
+        let statisticDefender = getStatisticsFor(character: defender)
         
         statisticDefender.attacksTakenNumber += 1
         statisticDefender.damageTaken += attacker.weapon.damage
     }
     
-    
-    private func getStatisticFor(character: Character) -> Statistic {
+    // to check if a character's statistics already exist (if not create them) and add them to the array
+    private func getStatisticsFor(character: Character) -> Statistic {
         if charactersStatistics[character] == nil {
             charactersStatistics[character] = Statistic()
         }
-        // retrieve the stats of the character and apply the change
+        // retrieve the stats of the character and applies the change
         return charactersStatistics[character]!
     }
     
     
-    
+    //stats for team (player)
     private func updateTeamStatistics(attackerPlayer: Player, attacker: Character, defenderPlayer: Player) {
         // if teamStatistics do not contain statistics for attackerPlayer create Stats for attacker Player
         
-        let statisticPlayerAttacker = getStatisticFor(player: attackerPlayer)
+        let statisticPlayerAttacker = getStatisticsFor(player: attackerPlayer)
         
         statisticPlayerAttacker.attacksNumber += 1
         statisticPlayerAttacker.damageGiven += attacker.weapon.damage
         
-        let statisticPlayerDefender = getStatisticFor(player: defenderPlayer)
+        let statisticPlayerDefender = getStatisticsFor(player: defenderPlayer)
         
         statisticPlayerDefender.attacksTakenNumber += 1
         statisticPlayerDefender.damageTaken += attacker.weapon.damage
     }
     
-    private func getStatisticFor(player: Player) -> Statistic {
+    private func getStatisticsFor(player: Player) -> Statistic {
         if teamStatistics[player] == nil {
             teamStatistics[player] = Statistic()
         }
