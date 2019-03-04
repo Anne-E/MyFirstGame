@@ -10,23 +10,6 @@ import Foundation
 
 class TreasureManager {
     
-    // array of weapons meant for attacking that the character might find
-    lazy private var weaponsDamageTreasure: [Weapon] = [
-        Weapon(name: "fork", damage: 2),
-        Weapon(name: "knife", damage: 25),
-        Weapon(name: "mass", damage: 40),
-        Weapon(name: "bow", damage: 50),
-        Weapon(name: "golden sword", damage: 100)
-    ]
-    
-    // array of "weapons" meant for healing that the character might find
-    lazy private var weaponsHealTreasure: [Weapon] = [
-        Weapon(name: "broken wand", damage: -2),
-        Weapon(name: "potion", damage: -40),
-        Weapon(name: "silver wand", damage: -50),
-        Weapon(name: "golden wand", damage: -100)
-    ]
-    
     // searchTreasure func
     public func searchTreasure(character: Character) {
         
@@ -40,18 +23,39 @@ class TreasureManager {
         // if not he gets a treasure
         print("\(character.name) found a treasure")
         
-        let treasure: Weapon!
-        // if the chosen character is an attackant, choose randomly a weapon in the corresponding array
-        if character.weapon.damage > 0 {
-            treasure = weaponsDamageTreasure.randomElement()
-        } else {
-            // if the character is a healer, choose randomly a healing element in the corresponding array
-            treasure = weaponsHealTreasure.randomElement()
-        }
+        let treasure: Weapon = getTreasureWeapon(positiveDamage: character.weapon.damage > 0, number: number)
+        
         print("treasure contains \(treasure.name) damage : \(treasure.damage)")
         print("\(character.name) changes his weapon for \(treasure.name)")
         // the new treasure weapon is assigned to the character
         character.weapon = treasure
     }
     
+    private func getTreasureWeapon(positiveDamage: Bool, number: Int) -> Weapon {
+        let treasure: Weapon!
+        
+        if positiveDamage {
+            if number < 1 {
+                treasure = GoldenSword()
+            } else if number < 5 {
+                treasure = Bow()
+            } else if number < 15 {
+                treasure = Mass()
+            } else if number < 20 {
+                treasure = Knife()
+            } else {
+                treasure = Fork()
+            }
+        } else {
+            if number < 3 {
+                treasure = GoldenWand()
+            } else if number < 15 {
+                treasure = Potion()
+            } else {
+                treasure = BrokenWand()
+            }
+        }
+        return treasure
+    }
 }
+

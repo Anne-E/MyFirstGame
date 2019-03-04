@@ -15,7 +15,6 @@ class Statistic {
     
     var attacksNumber: Int = 0
     var attacksTakenNumber: Int = 0
-    
 }
 
 // class statisticsManager
@@ -45,50 +44,58 @@ class StatisticsManager {
     
     // updateStatistics func
     public func updateStatistics(attackerPlayer: Player, attacker: Character,
-                          defenderPlayer: Player, defender: Character){
+                                 defenderPlayer: Player, defender: Character){
         
         updateCharacterStatistics(attacker: attacker, defender: defender)
         updateTeamStatistics(attackerPlayer: attackerPlayer, attacker: attacker, defenderPlayer: defenderPlayer)
         totalNumberOfTurn += 1
     }
     
-    private func updateTeamStatistics(attackerPlayer: Player, attacker: Character, defenderPlayer: Player) {
-        // if teamStatistics do not contain statistics for attackerPlayer create Stats for attacker Player
-        if teamStatistics[attackerPlayer] == nil {
-            teamStatistics[attackerPlayer] = Statistic()
-        }
-        
-        // get new stats
-        var statistic = teamStatistics[attackerPlayer]!
-        statistic.attacksNumber += 1
-        statistic.damageGiven += attacker.weapon.damage
-        
-        if teamStatistics[defenderPlayer] == nil {
-            teamStatistics[defenderPlayer] = Statistic()
-        }
-        
-        statistic = teamStatistics[defenderPlayer]!
-        statistic.attacksTakenNumber += 1
-        statistic.damageTaken += attacker.weapon.damage
-    }
-    
     // stats for characters
     private func updateCharacterStatistics(attacker: Character, defender: Character) {
         // to check if a character's statistics already exist (if not create them)
-        if charactersStatistics[attacker] == nil {
-            charactersStatistics[attacker] = Statistic()
+        
+        let statisticAttacker = getStatisticFor(character: attacker)
+            
+        statisticAttacker.attacksNumber += 1
+        statisticAttacker.damageGiven += attacker.weapon.damage
+        
+        let statisticDefender = getStatisticFor(character: defender)
+        
+        statisticDefender.attacksTakenNumber += 1
+        statisticDefender.damageTaken += attacker.weapon.damage
+    }
+    
+    
+    private func getStatisticFor(character: Character) -> Statistic {
+        if charactersStatistics[character] == nil {
+            charactersStatistics[character] = Statistic()
         }
         // retrieve the stats of the character and apply the change
-        var statistic = charactersStatistics[attacker]!
-        statistic.attacksNumber += 1
-        statistic.damageGiven += attacker.weapon.damage
+        return charactersStatistics[character]!
+    }
+    
+    
+    
+    private func updateTeamStatistics(attackerPlayer: Player, attacker: Character, defenderPlayer: Player) {
+        // if teamStatistics do not contain statistics for attackerPlayer create Stats for attacker Player
         
-        if charactersStatistics[defender] == nil {
-            charactersStatistics[defender] = Statistic()
+        let statisticPlayerAttacker = getStatisticFor(player: attackerPlayer)
+        
+        statisticPlayerAttacker.attacksNumber += 1
+        statisticPlayerAttacker.damageGiven += attacker.weapon.damage
+        
+        let statisticPlayerDefender = getStatisticFor(player: defenderPlayer)
+        
+        statisticPlayerDefender.attacksTakenNumber += 1
+        statisticPlayerDefender.damageTaken += attacker.weapon.damage
+    }
+    
+    private func getStatisticFor(player: Player) -> Statistic {
+        if teamStatistics[player] == nil {
+            teamStatistics[player] = Statistic()
         }
-        
-        statistic = charactersStatistics[defender]!
-        statistic.attacksTakenNumber += 1
-        statistic.damageTaken += attacker.weapon.damage
+        // retrieve the stats of the character and apply the change
+        return teamStatistics[player]!
     }
 }

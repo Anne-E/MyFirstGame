@@ -39,7 +39,7 @@ class Character: Hashable {
         self.name = name
         self.lives = lives
         self.weapon = weapon
-        self.livesMax = 100
+        self.livesMax = lives
     }
    
     // attack function taking as a parameter the victim character and applying to the victim's life the weapon's damage of the current attacker

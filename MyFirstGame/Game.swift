@@ -50,11 +50,11 @@ class Game {
     
     // runGame Method
     private func runGame() {
-        // variable playingPlayer
+        // variable currentPlayer
         var currentPlayer: Player!
         // while loop : the game goes on as long as none of the players die
         while !player1.isDead && !player2.isDead {
-            // actifPlayer func called that returns playingPlayer
+            // actifPlayer func called that returns currentPlayer
             currentPlayer = actifPlayer()
             // printGame func called to display the current state of the game
             printGame()
@@ -90,25 +90,25 @@ class Game {
             playerVictim = player1
         }
         
-        let victimChoosen: Character!
+        let victimChosen: Character!
         
         // if the character is not the healer (wizard)
         if attacker.weapon.damage > 0 {
             // the player chooses a character to attack in the opposing team
             print("which character do you want to attack?")
-            victimChoosen = chooseCharacterUse(player: playerVictim)
+            victimChosen = chooseCharacterUse(player: playerVictim)
         } else {
             // if the chosen character is the healer, the player chooses a character in his/her own team to heal
             print("which character do you want to heal?")
-            victimChoosen = chooseCharacterUse(player: playingPlayer)
+            victimChosen = chooseCharacterUse(player: playingPlayer)
         }
         
         // attacking or healing action called
-        attacker.attackOrHeal(victim: victimChoosen)
+        attacker.attackOrHeal(victim: victimChosen)
         
         // statisticsManager.updateStatistics called
         statisticsManager.updateStatistics(attackerPlayer: playingPlayer, attacker: attacker,
-                                           defenderPlayer: playerVictim, defender: victimChoosen)
+                                           defenderPlayer: playerVictim, defender: victimChosen)
     }
     
     

@@ -23,6 +23,14 @@
 		9ADEC80C21A71EA700F6D0EF /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADEC80B21A71EA700F6D0EF /* Weapon.swift */; };
 		9AE22B6621F6352E00D18ADF /* TreasureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE22B6521F6352E00D18ADF /* TreasureManager.swift */; };
 		9AE22B6821F636BC00D18ADF /* StatisticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE22B6721F636BC00D18ADF /* StatisticsManager.swift */; };
+		9AF071D022284DB100709D81 /* Fork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF071CF22284DB100709D81 /* Fork.swift */; };
+		9AF071D222284E9600709D81 /* Knife.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF071D122284E9600709D81 /* Knife.swift */; };
+		9AF071D422284EF700709D81 /* Mass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF071D322284EF700709D81 /* Mass.swift */; };
+		9AF071D622284F3800709D81 /* Bow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF071D522284F3800709D81 /* Bow.swift */; };
+		9AF071D822284F9B00709D81 /* GoldenSword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF071D722284F9B00709D81 /* GoldenSword.swift */; };
+		9AF071DA2228505100709D81 /* BrokenWand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF071D92228505100709D81 /* BrokenWand.swift */; };
+		9AF071DC2228507600709D81 /* Potion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF071DB2228507600709D81 /* Potion.swift */; };
+		9AF071DE222850C500709D81 /* GoldenWand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF071DD222850C500709D81 /* GoldenWand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +63,14 @@
 		9ADEC80B21A71EA700F6D0EF /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 		9AE22B6521F6352E00D18ADF /* TreasureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureManager.swift; sourceTree = "<group>"; };
 		9AE22B6721F636BC00D18ADF /* StatisticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StatisticsManager.swift; path = MyFirstGame/StatisticsManager.swift; sourceTree = SOURCE_ROOT; };
+		9AF071CF22284DB100709D81 /* Fork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fork.swift; sourceTree = "<group>"; };
+		9AF071D122284E9600709D81 /* Knife.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Knife.swift; sourceTree = "<group>"; };
+		9AF071D322284EF700709D81 /* Mass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mass.swift; sourceTree = "<group>"; };
+		9AF071D522284F3800709D81 /* Bow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bow.swift; sourceTree = "<group>"; };
+		9AF071D722284F9B00709D81 /* GoldenSword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenSword.swift; sourceTree = "<group>"; };
+		9AF071D92228505100709D81 /* BrokenWand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokenWand.swift; sourceTree = "<group>"; };
+		9AF071DB2228507600709D81 /* Potion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Potion.swift; sourceTree = "<group>"; };
+		9AF071DD222850C500709D81 /* GoldenWand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoldenWand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +123,14 @@
 				9A693F1721C18345001358C0 /* Axe.swift */,
 				9A693F1321C17F07001358C0 /* Fists.swift */,
 				9A693F0F21C17D25001358C0 /* Wand.swift */,
+				9AF071CF22284DB100709D81 /* Fork.swift */,
+				9AF071D122284E9600709D81 /* Knife.swift */,
+				9AF071D322284EF700709D81 /* Mass.swift */,
+				9AF071D522284F3800709D81 /* Bow.swift */,
+				9AF071D722284F9B00709D81 /* GoldenSword.swift */,
+				9AF071D92228505100709D81 /* BrokenWand.swift */,
+				9AF071DB2228507600709D81 /* Potion.swift */,
+				9AF071DD222850C500709D81 /* GoldenWand.swift */,
 			);
 			path = Weapons;
 			sourceTree = "<group>";
@@ -180,21 +204,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AF071DA2228505100709D81 /* BrokenWand.swift in Sources */,
+				9AF071DC2228507600709D81 /* Potion.swift in Sources */,
 				9A693F0E21C17C51001358C0 /* Wizard.swift in Sources */,
+				9AF071D022284DB100709D81 /* Fork.swift in Sources */,
 				9A693F1821C18345001358C0 /* Axe.swift in Sources */,
 				9A693F1021C17D25001358C0 /* Wand.swift in Sources */,
+				9AF071D622284F3800709D81 /* Bow.swift in Sources */,
 				9A693F1621C17FD3001358C0 /* Dwarf.swift in Sources */,
 				9A693F0C21C179B5001358C0 /* Sword.swift in Sources */,
 				9ADEC80C21A71EA700F6D0EF /* Weapon.swift in Sources */,
+				9AF071D822284F9B00709D81 /* GoldenSword.swift in Sources */,
 				9A693F0A21C177FD001358C0 /* Warrior.swift in Sources */,
 				9A7D3DE0219213E200924C36 /* main.swift in Sources */,
 				9AE22B6821F636BC00D18ADF /* StatisticsManager.swift in Sources */,
 				9A1FFA7021C9586C00822E5F /* NameManager.swift in Sources */,
 				9A693F1421C17F07001358C0 /* Fists.swift in Sources */,
 				9ADEC80821A71E2200F6D0EF /* Player.swift in Sources */,
+				9AF071D222284E9600709D81 /* Knife.swift in Sources */,
+				9AF071D422284EF700709D81 /* Mass.swift in Sources */,
 				9AE22B6621F6352E00D18ADF /* TreasureManager.swift in Sources */,
 				9A7D3DE72192156100924C36 /* Game.swift in Sources */,
 				9ADEC80A21A71E7500F6D0EF /* Character.swift in Sources */,
+				9AF071DE222850C500709D81 /* GoldenWand.swift in Sources */,
 				9A693F1221C17E40001358C0 /* Giant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
