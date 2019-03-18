@@ -225,7 +225,7 @@ class Game {
             return Giant(characterName: characterName)
         } else {
             // if the type chosen returned doesn't exist return createCharacter
-            print("The type entered is not valid one. Please try again.")
+            print("The type entered is not a valid one. Please try again.")
             return createCharacter(characterName:characterName)
         }
     }
