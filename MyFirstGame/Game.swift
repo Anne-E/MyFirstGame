@@ -239,7 +239,7 @@ class Game {
         var character: Character!
         
         var number = 1
-        //While Loop to limit the number of character chosen to 4 + added the team array
+        //While Loop to limit the number of character chosen to 3 + added the team array
         while (number != 4) {
             characterName = chooseCharacterName(characterNumber: number, playerName: playerName)
             character = createCharacter(characterName: characterName)
